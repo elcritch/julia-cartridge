@@ -3,7 +3,7 @@ Cartridge-Short-Name: julia
 Cartridge-Version: '0.0.1'
 Display-Name: "Julia Cartridge"
 Description: "julia cartridge"
-Source-Url: https://github.com/ivandavid77/julia-cartridge.git
+Source-Url: https://github.com/codeneomatrix/julia-cartridge.git
 Cartridge-Vendor: ivandavid
 Version: '0.3.10'
 Categories:  
