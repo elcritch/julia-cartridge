@@ -3,12 +3,14 @@
 
 julia -e 'Pkg.init(); Pkg.update()'
 julia -e 'Pkg.add("HttpServer")'
-julia -e 'Pkg.add("Meddle")'
+Pkg.clone("git://github.com/JuliaWeb/Mux.jl.git")
 julia -e 'Pkg.add("WebSockets")'
+julia -e 'Pkg.add("Mongo")'
 julia -e 'Pkg.add("JSON")'
 
 cd $OPENSHIFT_JULIA_DIR
 cat > install_packages.sh << EOF
+#julia -e 'Pkg.add("Mux")'
 #julia -e 'Pkg.add("BayesNets")'
 #julia -e 'Pkg.add("Cairo")'
 #julia -e 'Pkg.add("Clp")'

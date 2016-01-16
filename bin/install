@@ -2,12 +2,13 @@
 
 
 cd $OPENSHIFT_JULIA_DIR/usr
-tar -xzf julia-0.3.10-linux-x86_64.tar.gz
-mv julia-c8ceeefcc1/* .
-rm -rf julia-c8ceeefcc1
+tar -xzf julia-0.4.2-linux-x86_64.tar.gz
+mv julia-bb73f3489d/* .
+rm -rf julia-bb73f3489d
 rm -f julia-0.3.10-linux-x86_64.tar.gz
+rm -f julia-0.4.2-linux-x86_64.tar.gz
 cd $OPENSHIFT_JULIA_DIR
-mkdir -p .julia/v0.3
+mkdir -p .julia/v0.4
 touch .julia_history
 
 exit 0
