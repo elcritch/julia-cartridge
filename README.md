@@ -6,7 +6,7 @@ Julia Openshift Cartridge
 
 
 Provide the next URL for cartridge definition when create a new application:
-https://raw.githubusercontent.com/ivandavid77/julia-cartridge/master/metadata/manifest.yml
+https://raw.githubusercontent.com/codeneomatrix/julia-cartridge/master/metadata/manifest.yml
 
 ##Example
 The most convenient way for use this cartridge it's using Red-Hat Client (Installation, configuration and further info can be found in https://developers.openshift.com/en/managing-client-tools.html), we'll do next things:
@@ -16,7 +16,7 @@ The most convenient way for use this cartridge it's using Red-Hat Client (Instal
 
 #### Create your application
 Open your terminal and type:
-<pre><code>~ $ rhc app create my_project_name https://raw.githubusercontent.com/ivandavid77/julia-cartridge/master/metadata/manifest.yml
+<pre><code>~ $ rhc app create my_project_name https://raw.githubusercontent.com/codeneomatrix/julia-cartridge/master/metadata/manifest.yml
 Your application 'my_project_name' is now available.
   URL:        http://my_project_name-your_user.rhcloud.com/
   SSH to:     55a5cdf...@my_project_name-your_user.rhcloud.com
@@ -64,7 +64,7 @@ By default every file that begins with dot will not be showed:
 Also on index.html you can confirm that is available websockets too, check you browser's javascript console and html of this page.
 
 
-You must edit <strong>.server.jl</strong> for adding your own content! You can see the original code at https://github.com/ivandavid77/julia-cartridge/blob/master/template/.server.jl, it was created using Meddle package from http://juliawebstack.org/
+You must edit <strong>.server.jl</strong> for adding your own content! You can see the original code at https://github.com/codeneomatrix/julia-cartridge/blob/master/template/.server.jl, it was created using Meddle package from http://juliawebstack.org/
 
 
 ##TODO:
