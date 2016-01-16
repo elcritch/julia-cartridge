@@ -36,7 +36,7 @@ Connecting to 55a5cdf...@my_project_name-your_user.rhcloud.com ...
   (_)     | (_) (_)    |  Documentation: http://docs.julialang.org
    _ _   _| |_  __ _   |  Type "help()" for help.
   | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 0.3.10 (2015-06-24 13:54 UTC)
+  | | |_| | | | (_| |  |  Version 0.4.2 (2015-12-24 13:54 UTC)
  _/ |\__'_|_|_|\__'_|  |  Official http://julialang.org/ release
 |__/                   |  x86_64-unknown-linux-gnu
 

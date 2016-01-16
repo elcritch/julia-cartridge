@@ -38,10 +38,6 @@ end
               probabilty(0.1, respond("<h1>Boo!</h1>")),
               respond("<h1>About Me</h1>")),
          page("/user/:user", req -> "<h1>Hello, $(req[:params][:user])!</h1>"),
-    
-        post("/hellos", req -> create(Hellos_Controller(), req)),
-        put("/hellos/:id",req -> update(Hellos_Controller(), req)),
-        delete("/hellos/:id", req -> destroy(Hellos_Controller(), req)),
         Mux.notfound())
 
 
