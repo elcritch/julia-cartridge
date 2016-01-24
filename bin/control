@@ -17,8 +17,8 @@ function start() {
   fi
   cd $OPENSHIFT_REPO_DIR
   echo "Starting $OPENSHIFT_APP_NAME"
-  nohup julia .server.jl >/dev/null 2>&1 &
-  npid=$(ps -eo pid,command | grep ".server.jl" | grep -v grep | awk '{print $1}')
+  nohup julia server.jl >/dev/null 2>&1 &
+  npid=$(ps -eo pid,command | grep "server.jl" | grep -v grep | awk '{print $1}')
   echo "$npid" > "$pid_file"
   echo "started $OPENSHIFT_APP_NAME"
 }
@@ -33,7 +33,7 @@ function stop() {
       kill "$npid" 2> /dev/null
     fi
   else
-    npid=$(ps -eo pid,command | grep ".server.jl" | grep -v grep | awk '{print $1}')
+    npid=$(ps -eo pid,command | grep "server.jl" | grep -v grep | awk '{print $1}')
     if [ -n "$npid" ]; then
       echo "stopping $OPENSHIFT_APP_NAME"
       kill "$npid" 2> /dev/null
