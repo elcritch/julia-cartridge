@@ -36,7 +36,7 @@ Connecting to 55a5cdf...@my_project_name-your_user.rhcloud.com ...
   (_)     | (_) (_)    |  Documentation: http://docs.julialang.org
    _ _   _| |_  __ _   |  Type "help()" for help.
   | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 0.4.3 (2016-01-12 13:54 UTC)
+  | | |_| | | | (_| |  |  Version 0.4.3 (2016-01-12 21:37 UTC)
  _/ |\__'_|_|_|\__'_|  |  Official http://julialang.org/ release
 |__/                   |  x86_64-unknown-linux-gnu
 
@@ -54,6 +54,7 @@ Or from ssh connection, inside openshift terminal:
 Now you can test the next urls in your browser:
 <pre><code>http://my_project_name-your_user.rhcloud.com
 http://my_project_name-your_user.rhcloud.com/welcome.html
+http://my_project_name-your_user.rhcloud.com/static/test.html
 </code></pre>
 
 By default, all files that have no extension will be displayed .jl:
