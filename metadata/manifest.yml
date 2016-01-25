@@ -4,7 +4,7 @@ Cartridge-Version: '0.0.2'
 Display-Name: "Julia Cartridge"
 Description: "julia cartridge"
 Source-Url: https://github.com/codeneomatrix/julia-cartridge.git
-Cartridge-Vendor: ivandavid, codeneomatrix
+Cartridge-Vendor: ivandavid and codeneomatrix
 Version: '0.4.3'
 Categories:  
   - service
