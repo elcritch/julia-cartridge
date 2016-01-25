@@ -9,47 +9,6 @@ function catchall() {
   return 0
 }
 
-
-function start() {
-  if is_running; then
-    client_result "application $OPENSHIFT_APP_NAME is already running"
-    exit 1
-  fi
-  cd $OPENSHIFT_REPO_DIR
-  client_message "Starting $OPENSHIFT_APP_NAME"
-  nohup julia server.jl >/dev/null 2>&1 &
-  npid=$(ps -eo pid,command | grep "server.jl" | grep -v grep | awk '{print $1}')
-  echo "$npid" > "$pid_file"
-  client_result "started $OPENSHIFT_APP_NAME"
-}
-
-
-function stop() {
-  echo "stopping $OPENSHIFT_APP_NAME application"
-  if [ -f $pid_file ]; then
-    npid=$(cat $pid_file 2> /dev/null)
-    if [ -n "$npid" ]; then
-      echo "stopping $OPENSHIFT_APP_NAME"
-      kill "$npid" 2> /dev/null
-    fi
-  else
-    npid=$(ps -eo pid,command | grep "server.jl" | grep -v grep | awk '{print $1}')
-    if [ -n "$npid" ]; then
-      echo "stopping $OPENSHIFT_APP_NAME"
-      kill "$npid" 2> /dev/null
-    fi
-  fi
-  echo "$OPENSHIFT_APP_NAME application stopped"
-  rm -f $pid_file
-}
-
-
-function restart() {
-  stop
-  start
-}
-
-
 function is_running() {
   if [ -f $pid_file ]; then
     npid=$(cat $pid_file 2> /dev/null)
@@ -60,34 +19,66 @@ function is_running() {
   return 1
 }
 
+function start() {
+  if is_running; then
+    client_result "application $OPENSHIFT_APP_NAME is already running"
+  else
+    cd $OPENSHIFT_REPO_DIR
+    client_message "Starting $OPENSHIFT_APP_NAME"
+    nohup julia server.jl >/dev/null 2>&1 &
+    npid=$(ps -eo pid,command | grep "server.jl" | grep -v grep | awk '{print $1}')
+    echo "$npid" > "$pid_file"
+    client_result "started $OPENSHIFT_APP_NAME"
+  fi
+}
+
+
+function stop() {
+  client_message "stopping $OPENSHIFT_APP_NAME application..."
+  if [ -f $pid_file ]; then
+    npid=$(cat $pid_file 2> /dev/null)
+    if [ -n "$npid" ]; then
+      client_message "stopping $OPENSHIFT_APP_NAME"
+      kill "$npid" 2> /dev/null
+    fi
+  else
+    npid=$(ps -eo pid,command | grep "server.jl" | grep -v grep | awk '{print $1}')
+    if [ -n "$npid" ]; then
+      client_message "stopping $OPENSHIFT_APP_NAME"
+      kill "$npid" 2> /dev/null
+    fi
+  fi
+  client_message "$OPENSHIFT_APP_NAME application stopped"
+  rm -f $pid_file
+}
+
+
+function restart() {
+  stop
+  start
+}
+
 
 function status() {
   if is_running; then
       client_result "$OPENSHIFT_APP_NAME running"
-      #return 0
   fi
   client_result "$OPENSHIFT_APP_NAME not-running"
-  #return 1
 }
 
+function tidy() {
+  shopt -s dotglob
+  client_message "Emptying logs in ${OPENSHIFT_LOG_DIR}..."
+  rm -rf ${OPENSHIFT_LOG_DIR}/*.log*
+  client_message 'Done.'
+}
 
 case "$1" in
-  start)                start ;;
-  stop)                 stop ;;
+  start)                start   ;;
+  stop)                 stop    ;;
   restart)              restart ;;
-  status)               status ;;
-  reload)               catchall ;;
-  tidy)                 catchall ;;
-  pre-build)            catchall ;;
-  build)                catchall ;;
-  deploy)               catchall ;;
-  post-deploy)          catchall ;;
-  pre-snapshot)         catchall ;;
-  post-snapshot)        catchall ;;
-  pre-restore)          catchall ;;
-  post-restore)         catchall ;;
-  pre-repo-archive)     catchall ;;
-  update-configuration) catchall ;;
+  status)               status  ;;
+  tidy)                 tidy    ;;
   *)           exit 0
 esac
 
