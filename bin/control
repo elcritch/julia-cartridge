@@ -19,7 +19,7 @@ function start() {
   client_message "Starting $OPENSHIFT_APP_NAME"
   nohup julia server.jl >/dev/null 2>&1 &
   npid=$(ps -eo pid,command | grep "server.jl" | grep -v grep | awk '{print $1}')
-  client_message "$npid" > "$pid_file"
+  echo "$npid" > "$pid_file"
   client_result "started $OPENSHIFT_APP_NAME"
 }
 
