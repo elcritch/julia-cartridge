@@ -6,7 +6,7 @@ julia -e 'Pkg.add("HttpServer")'
 julia -e 'Pkg.add("HttpCommon")'
 julia -e 'Pkg.add("JSON")'
 julia -e 'Pkg.add("XMLDict")'
-julia -e 'Pkg.clone("git://github.com/codeneomatrix/Merly.jl.git")'
+julia -e 'Pkg.clone("git://github.com/elcritch/Merly.jl.git")'
 
 cd $OPENSHIFT_JULIA_DIR
 cat > install_packages.sh << EOF
