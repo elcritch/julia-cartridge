@@ -1,18 +1,14 @@
-using Merly
 
-ur= ENV["OPENSHIFT_REPO_DIR"] 
-host = getaddrinfo(ENV["OPENSHIFT_JULIA_IP"])
-port = parse(Int,ENV["OPENSHIFT_JULIA_PORT"])
+using Mux
 
+@app test = (
+  Mux.defaults,
+  page(respond("<h1>Hello World!</h1>")),
+  page("/about",
+       probabilty(0.1, respond("<h1>Boo!</h1>")),
+       respond("<h1>About Me</h1>")),
+  page("/user/:user", req -> "<h1>Hello, $(req[:params][:user])!</h1>"),
+  Mux.notfound())
 
-  server = Merly.app(ur,"jl")
-  @page "/" File("welcome.html", res)
-  server.notfound("
-    <!DOCTYPE html>
-    <html>
-    <head><title>Not found</title></head>
-    <body><h1>404, Not found</h1></body>
-    </html>
-  ")
+serve(test)
 
-  server.start("$host", port)

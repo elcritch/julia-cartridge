@@ -1,24 +1,25 @@
 #!/bin/bash -e
 
-
 julia -e 'Pkg.init(); Pkg.update()'
 julia -e 'Pkg.add("HttpServer")'
 julia -e 'Pkg.add("HttpCommon")'
 julia -e 'Pkg.add("JSON")'
 julia -e 'Pkg.add("XMLDict")'
-julia -e 'Pkg.clone("git://github.com/elcritch/Merly.jl.git")'
+julia -e 'Pkg.add("Mongo")'
+julia -e 'Pkg.add("Mux")'
+julia -e 'Pkg.add("DataStructures")'
+julia -e 'Pkg.add("Escher")'
+
 
 cd $OPENSHIFT_JULIA_DIR
 cat > install_packages.sh << EOF
 #julia -e 'Pkg.add("WebSockets")'
-#julia -e 'Pkg.add("Mongo")'
-#julia -e 'Pkg.add("Mux")'
+#julia -e 'Pkg.clone("git://github.com/elcritch/Merly.jl.git")'
 #julia -e 'Pkg.add("BayesNets")'
 #julia -e 'Pkg.add("Cairo")'
 #julia -e 'Pkg.add("Clp")'
 #julia -e 'Pkg.add("Clustering")'
 #julia -e 'Pkg.add("DataFrames")'
-#julia -e 'Pkg.add("DataStructures")'
 #julia -e 'Pkg.add("Distributions")'
 #julia -e 'Pkg.add("GLM")'
 #julia -e 'Pkg.add("GLPKMathProgInterface")'
