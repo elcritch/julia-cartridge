@@ -1,5 +1,10 @@
 
+using HttpServer
 using Mux
+using Mux.App
+using Mux.http_handler
+
+import Mux.serve
 
 @app test = (
   Mux.defaults,
@@ -11,8 +16,13 @@ using Mux
   Mux.notfound(),
 )
 
+
+serve(h::App; host = default_host, port = default_port) =
+         serve(Server(http_handler(h)), host=host, port=port)
+
 host = getaddrinfo(ENV["OPENSHIFT_JULIA_IP"])
-port = int(ENV["OPENSHIFT_JULIA_PORT"])
-serve(Server(http, ws), host=host, port=port)
+port = parse(Int,ENV["OPENSHIFT_JULIA_PORT"])
+
+serve(test, host=host, port=port)
 
 
