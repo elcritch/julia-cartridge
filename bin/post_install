@@ -5,11 +5,13 @@ julia -e 'Pkg.add("HttpServer")'
 julia -e 'Pkg.add("HttpCommon")'
 julia -e 'Pkg.add("JSON")'
 julia -e 'Pkg.add("XMLDict")'
-julia -e 'Pkg.add("Mongo")'
-# julia -e 'Pkg.add("Mux")'
-julia -e 'Pkg.clone("https://github.com/elcritch/Mux.jl.git")'
 julia -e 'Pkg.add("DataStructures")'
+julia -e 'Pkg.clone("https://github.com/elcritch/Mux.jl.git")'
+# julia -e 'Pkg.clone("https://github.com/codeneomatrix/Merly.jl.git")'
+
 # julia -e 'Pkg.add("Escher")'
+# julia -e 'Pkg.add("Mux")'
+# julia -e 'Pkg.add("Mongo")'
 
 
 cd $OPENSHIFT_JULIA_DIR
