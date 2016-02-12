@@ -39,10 +39,8 @@ function stop() {
     npid=$(cat $pid_file 2> /dev/null)
     if [ -n "$npid" ]; then
       client_message "stopping $OPENSHIFT_APP_NAME"
-      if (( is_running() > 0 )); then
+      if ! is_running; then
         kill "$npid" 2> /dev/null
-	  else
-		  client_message "warning: no process to stop "
       fi
     fi
   else
@@ -55,7 +53,6 @@ function stop() {
   client_message "$OPENSHIFT_APP_NAME application stopped"
   rm -f $pid_file
 }
-
 
 
 function restart() {
