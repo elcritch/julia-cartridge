@@ -41,6 +41,8 @@ function stop() {
       client_message "stopping $OPENSHIFT_APP_NAME"
       if (( is_running() > 0 )); then
         kill "$npid" 2> /dev/null
+	  else
+		  client_message "warning: no process to stop "
       fi
     fi
   else
